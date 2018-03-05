@@ -25,29 +25,27 @@
           nodeMap[info] = true;
          }
        }
-
-      void copyBSTPreorder(NODE<T>* ROOT1, NODE<T>* ROOT2)
-      {
-        if (!ROOT1) {
+       
+       void copyBSTPreorder(NODE<T>* ROOT1, NODE<T>* ROOT2)
+       {
+         if (!ROOT1) {
+           return;
+         }
+         if( (nodeMap.empty()) || (!(nodeMap[ROOT1->getInfo()])))
+         {
+           copyNode(ROOT1, ROOT2);
+         } else {
           return;
-        }
-        if( (nodeMap.empty()) || (!(nodeMap[ROOT1->getInfo()])))
-        {
-          copyNode(ROOT1, ROOT2);
-        } else {
-          return;
-        }
-        copyBSTPreorder(ROOT1->getLeft(), ROOT2);
-        
-        
-        copyBSTPreorder(ROOT1->getRight(), ROOT2);
-      }
-      NODE<T>* copyBST(NODE<T>* ROOT1, NODE<T>* ROOT2)
-      {
-        //NODE<T>* ROOT2 = new NODE<T>(this->getROOT()->getInfo());
-        copyBSTPreorder(ROOT1, ROOT2);
-        return ROOT2;
-      }
+         }
+         copyBSTPreorder(ROOT1->getLeft(), ROOT2);
+         copyBSTPreorder(ROOT1->getRight(), ROOT2);
+       }
+       NODE<T>* copyBST(NODE<T>* ROOT1, NODE<T>* ROOT2)
+       {
+         //NODE<T>* ROOT2 = new NODE<T>(this->getROOT()->getInfo());
+         copyBSTPreorder(ROOT1, ROOT2);
+         return ROOT2;
+       }
 
   1.3 Copying a Binary Search Tree Or Creating a Clone Or Creating a Mirror of a BST AND also copying any cycles
     1.3.1 
